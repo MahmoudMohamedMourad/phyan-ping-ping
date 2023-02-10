@@ -39,35 +39,39 @@ score.color ("white")
 score.penup()
 score.hideturtle()
 score.goto (0,260)
-score.write ("play1:0 play2:0 ",align="center",font=("courier",24,"normal"))
-#functions 
-#function
-def madrab1_up():
-    y = madrab1.ycor()
-    y+=20
-    madrab1.sety(y)
+score.write ("play1:0 play2:0 ",align="center",font=("courier",24,"normal")) 
 
-def madrab1_down():
-    y = madrab1.ycor()
-    y-=20
-    madrab1.sety(y)    
+def madrab_up(num):
+    global madrab1
+    global madrab2
 
-def madrab2_up():
-    y = madrab2.ycor()
-    y+=20
-    madrab2.sety(y)
+    if num == 2:
+        y = madrab2.ycor()
+        y+=20
+        madrab2.sety(y)
+    else: 
+        y = madrab1.ycor()
+        y+=20
+        madrab1.sety(y)
 
-def madrab2_down():
-    y = madrab2.ycor()
-    y-=20
-    madrab2.sety(y) 
+def madrab_down(num):
+    global madrab1
+    global madrab2
+    if num == 2:
+        y = madrab2.ycor()
+        y-=20
+        madrab2.sety(y)
+    else: 
+        y = madrab1.ycor()
+        y-=20
+        madrab1.sety(y)
     
  # key binding 
 wind.listen()
-wind.onkeypress(madrab1_up, "w")    
-wind.onkeypress(madrab1_down , "s")
-wind.onkeypress(madrab2_up, "Up")    
-wind.onkeypress(madrab2_down , "Down")
+wind.onkeypress(lambda n=1: madrab_up(n), "w")    
+wind.onkeypress(lambda n=1: madrab_down(n), "s")
+wind.onkeypress(lambda n=2: madrab_up(n), "Up")    
+wind.onkeypress(lambda n=2: madrab_down(n), "Down")
      
 
 while True :
